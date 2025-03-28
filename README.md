@@ -59,6 +59,27 @@ The function will automatically adjust the text color to ensure it meets the WCA
 
 ---
 
+## 📐 Accessibility thresholds
+
+This utility follows official WCAG 2.1 contrast guidelines:
+
+| Text type       | Minimum contrast |
+| --------------- | ---------------- |
+| Regular text    | 4.5:1            |
+| Large/bold text | 3:1              |
+
+You can control the threshold via the optional third parameter:
+
+```scss
+// Default (4.5:1)
+color: adjust-contrast-color($text, $bg);
+
+// For large or bold text (3:1)
+color: adjust-contrast-color($text, $bg, 3);
+```
+
+---
+
 ## 🛠 Function Signature
 
 ```scss
