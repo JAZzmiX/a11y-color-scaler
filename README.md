@@ -11,10 +11,28 @@ A lightweight SCSS utility that automatically adjusts text color for better cont
 
 ## 🚀 Installation
 
-Copy `_contrast.scss` into your SCSS project and import it using `@use`:
+You can use **a11y-color-scaler** in two ways:
+
+### 📦 Option 1: Install via npm
+
+```bash
+npm install a11y-color-scaler
+```
+
+Then import it in your SCSS:
 
 ```scss
-@use 'path/to/contrast' as *;
+@use 'a11y-color-scaler' as *;
+```
+
+---
+
+### 📁 Option 2: Manual copy
+
+Copy `_contrast.scss` into your SCSS project and import it using:
+
+```scss
+@use 'path/to/_contrast.scss' as *;
 ```
 
 ---

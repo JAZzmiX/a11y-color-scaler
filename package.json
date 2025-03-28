@@ -1,0 +1,29 @@
+{
+  "name": "a11y-color-scaler",
+  "version": "1.0.0",
+  "description": "A SCSS utility that automatically adjusts text color for accessible contrast based on WCAG 2.1.",
+  "main": "scss/index.scss",
+  "keywords": [
+    "scss",
+    "sass",
+    "a11y",
+    "accessibility",
+    "contrast",
+    "color",
+    "wcag",
+    "design-system",
+    "theming",
+    "frontend",
+    "utility"
+  ],
+  "author": "Serhii Ivcheko (@JAZzmiX)",
+  "license": "MIT",
+  "homepage": "https://github.com/JAZzmiX/a11y-color-scaler#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JAZzmiX/a11y-color-scaler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JAZzmiX/a11y-color-scaler/issues"
+  }
+}
