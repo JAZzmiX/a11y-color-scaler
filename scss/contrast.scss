@@ -1,0 +1,67 @@
+// a11y-color-scaler
+// Automatically adjusts text color for better contrast (WCAG 2.1)
+// Author: Serhii Ivcheko (@JAZzmiX) — https://github.com/JAZzmiX
+// License: MIT
+
+@use 'sass:math';
+@use 'sass:color';
+
+// Calculates relative luminance (WCAG 2.1)
+@function luminance($color) {
+	$r: math.div(color.channel($color, 'red'), 255);
+	$g: math.div(color.channel($color, 'green'), 255);
+	$b: math.div(color.channel($color, 'blue'), 255);
+
+	$r: if(
+		$r < 0.03928,
+		math.div($r, 12.92),
+		math.pow(math.div($r + 0.055, 1.055), 2.4)
+	);
+	$g: if(
+		$g < 0.03928,
+		math.div($g, 12.92),
+		math.pow(math.div($g + 0.055, 1.055), 2.4)
+	);
+	$b: if(
+		$b < 0.03928,
+		math.div($b, 12.92),
+		math.pow(math.div($b + 0.055, 1.055), 2.4)
+	);
+
+	@return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+}
+
+// Calculates contrast ratio between two colors
+@function contrast-ratio($fg, $bg) {
+	$l1: luminance($fg);
+	$l2: luminance($bg);
+	$lighter: math.max($l1, $l2);
+	$darker: math.min($l1, $l2);
+
+	@return math.div($lighter + 0.05, $darker + 0.05);
+}
+
+// Automatically adjusts a color to meet contrast threshold
+@function adjust-contrast-color(
+	$text-color,
+	$bg-color,
+	$threshold: 4.5,
+	$step: 3%,
+	$max-steps: 10
+) {
+	$new-color: $text-color;
+	$contrast: contrast-ratio($new-color, $bg-color);
+	$i: 0;
+
+	@while $contrast < $threshold and $i < $max-steps {
+		@if color.channel($bg-color, 'lightness', $space: hsl) > 50 {
+			$new-color: color.adjust($new-color, $lightness: -$step);
+		} @else {
+			$new-color: color.adjust($new-color, $lightness: $step);
+		}
+		$contrast: contrast-ratio($new-color, $bg-color);
+		$i: $i + 1;
+	}
+
+	@return $new-color;
+}
