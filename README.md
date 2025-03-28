@@ -92,6 +92,20 @@ adjust-contrast-color(
 
 ---
 
+## 🆚 How is this different from other contrast tools?
+
+While other tools like [a11y-color-contrast](https://www.npmjs.com/package/a11y-color-contrast) only **validate** whether a color pair meets accessibility standards (WCAG),  
+**a11y-color-scaler** actively **adjusts** the text color to meet those standards — without breaking your design.
+
+| Tool                  | Type       | Purpose                            |
+| --------------------- | ---------- | ---------------------------------- |
+| `a11y-color-contrast` | JS Library | Checks contrast between colors     |
+| `a11y-color-scaler`   | SCSS Tool  | Dynamically adjusts color for WCAG |
+
+This means you can focus on design, and let the utility do the contrast correction for you.
+
+---
+
 ## 📄 License
 
 MIT – free for personal and commercial use.
