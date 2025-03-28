@@ -65,3 +65,15 @@
 
 	@return $new-color;
 }
+
+// Applies a stronger contrast only if the user has enabled "Increased Contrast" mode in their OS.
+@mixin prefers-strong-contrast(
+	$property,
+	$text-color,
+	$bg-color,
+	$threshold: 7
+) {
+	@media (prefers-contrast: more) {
+		#{$property}: adjust-contrast-color($text-color, $bg-color, $threshold);
+	}
+}

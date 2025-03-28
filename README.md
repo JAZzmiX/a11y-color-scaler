@@ -1,4 +1,4 @@
-# a11y-color-scaler 🎨♿️
+# a11y-color-scaler 🎨️♿️
 
 A lightweight SCSS utility that automatically adjusts text color for better contrast against any background — while preserving your brand palette.
 
@@ -59,7 +59,7 @@ The function will automatically adjust the text color to ensure it meets the WCA
 
 ---
 
-## 📐 Accessibility thresholds
+## 📀 Accessibility thresholds
 
 This utility follows official WCAG 2.1 contrast guidelines:
 
@@ -113,7 +113,49 @@ adjust-contrast-color(
 
 ---
 
-## 🆚 How is this different from other contrast tools?
+## ♿️ Bonus: respects system-level contrast preferences
+
+Some users enable “Increased Contrast” in their operating system for better readability.  
+You can respond to this setting using the built-in mixin `prefers-strong-contrast`.
+
+```scss
+.block {
+	background-color: $bg;
+	color: adjust-contrast-color($text, $bg); // WCAG 4.5
+
+	@include prefers-strong-contrast(
+		color,
+		$text,
+		$bg
+	); // Boost to WCAG 7 if user prefers it
+}
+```
+
+This mixin uses the CSS media query `@media (prefers-contrast: more)` to apply **stronger contrast only when requested** by the user’s system.
+
+### Mixin signature
+
+```scss
+@mixin prefers-strong-contrast(
+	$property,
+	$text-color,
+	$bg-color,
+	$threshold: 7
+);
+```
+
+| Parameter     | Type   | Description                                               |
+| ------------- | ------ | --------------------------------------------------------- |
+| `$property`   | String | CSS property to apply (e.g., `color`, `background-color`) |
+| `$text-color` | Color  | The original color you want to use                        |
+| `$bg-color`   | Color  | The background color for contrast comparison              |
+| `$threshold`  | Number | Contrast ratio to meet (default `7`)                      |
+
+You can use this for any property, including `color`, `background-color`, `border-color`, etc.
+
+---
+
+## 🎖️ How is this different from other contrast tools?
 
 While other tools like [a11y-color-contrast](https://www.npmjs.com/package/a11y-color-contrast) only **validate** whether a color pair meets accessibility standards (WCAG),  
 **a11y-color-scaler** actively **adjusts** the text color to meet those standards — without breaking your design.

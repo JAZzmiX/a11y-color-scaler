@@ -1,6 +1,6 @@
 {
   "name": "a11y-color-scaler",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A SCSS utility that automatically adjusts text color for accessible contrast based on WCAG 2.1.",
   "main": "scss/index.scss",
   "keywords": [
